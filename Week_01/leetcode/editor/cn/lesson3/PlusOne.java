@@ -19,7 +19,7 @@
 // 
 // Related Topics 数组
 
-package leetcode.editor.cn;
+package leetcode.editor.cn.lesson3;
 
 //Java：加一
 public class PlusOne {

@@ -42,7 +42,7 @@
 //
 // Related Topics 数组 双指针
 
-package leetcode.editor.cn;
+package leetcode.editor.cn.lesson3;
 
 import java.util.Arrays;
 

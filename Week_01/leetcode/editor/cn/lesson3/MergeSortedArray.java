@@ -20,7 +20,7 @@
 //输出: [1,2,2,3,5,6] 
 // Related Topics 数组 双指针
 
-package leetcode.editor.cn;
+package leetcode.editor.cn.lesson3;
 
 //Java：合并两个有序数组
 public class MergeSortedArray {
