@@ -13,7 +13,7 @@
 //
 // Related Topics 数组 双指针
 
-package leetcode.editor.cn.lesson3;
+package leetcode.editor.cn.lesson3.practice;
 
 //Java：移动零
 public class MoveZeroes {

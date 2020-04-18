@@ -7,7 +7,7 @@
 // 
 // Related Topics 链表
 
-package leetcode.editor.cn.lesson3;
+package leetcode.editor.cn.lesson3.practice;
 
 //Java：合并两个有序链表
 public class MergeTwoSortedLists {
