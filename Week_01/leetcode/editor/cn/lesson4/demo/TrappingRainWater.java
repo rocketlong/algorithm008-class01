@@ -31,7 +31,6 @@ public class TrappingRainWater {
         public int trap(int[] height) {
             int sum = 0;
             Stack<Integer> stack = new Stack<>();
-            int cur = 0;
             for (int i = 0; i < height.length; i++) {
                 while (!stack.isEmpty() && height[stack.peek()] < height[i]) {
                     int j = stack.pop();
