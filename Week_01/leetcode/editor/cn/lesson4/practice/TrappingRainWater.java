@@ -11,7 +11,7 @@
 //输出: 6
 // Related Topics 栈 数组 双指针
 
-package leetcode.editor.cn.lesson4.demo;
+package leetcode.editor.cn.lesson4.practice;
 
 import java.util.Stack;
 
