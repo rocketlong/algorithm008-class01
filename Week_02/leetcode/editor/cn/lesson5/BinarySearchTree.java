@@ -84,7 +84,7 @@ public class BinarySearchTree {
                 if (node.left == null) return node.right;
                 if (node.right == null) return node.left;
 
-                Node minNode = minRightNode(node.right);
+                Node minNode = _minRightNode(node.right);
                 node.data = minNode.data;
                 node.right = _delete(node.right, minNode.data);
             } else {
@@ -94,7 +94,7 @@ public class BinarySearchTree {
         return node;
     }
 
-    private Node minRightNode(Node node) {
+    private Node _minRightNode(Node node) {
         while (node.left != null)
             node = node.left;
         return node;
