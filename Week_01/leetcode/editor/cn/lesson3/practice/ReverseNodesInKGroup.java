@@ -32,12 +32,18 @@ public class ReverseNodesInKGroup {
 //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
+     * Reverse a link list between begin and end exclusively
+     * an example:
+     * a linked list:
+     * 0->1->2->3->4->5->6
+     * |           |
+     * begin       end
+     * after call begin = reverse(begin, end)
+     *
+     * 0->3->2->1->4->5->6
+     *          |  |
+     *      begin end
+     * @return the reversed list's 'begin' node, which is the precedence of node end
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
