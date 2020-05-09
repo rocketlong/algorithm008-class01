@@ -53,8 +53,8 @@ public class InvertBinaryTree {
             TreeNode temp = root.left;
             root.left = root.right;
             root.right = temp;
-            _reverse(root.left);
-            _reverse(root.right);
+            root.left = _reverse(root.left);
+            root.right = _reverse(root.right);
             return root;
         }
     }
