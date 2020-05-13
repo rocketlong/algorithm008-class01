@@ -66,11 +66,10 @@ public class MinimumGeneticMutation {
             if (start.equals(end) || bank.length == 0)
                 return -1;
             Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
-            Set<String> visited = new HashSet<>();
-            Queue<String> queue = new LinkedList<>();
             bankSet.add(start);
-            visited.add(start);
+            Queue<String> queue = new LinkedList<>();
             queue.add(start);
+            bankSet.remove(start);
             int level = 0;
             while (!queue.isEmpty()) {
                 int size = queue.size();
@@ -83,9 +82,9 @@ public class MinimumGeneticMutation {
                         for (char c : new char[]{'A', 'C', 'G', 'T'}) {
                             nextChars[j] = c;
                             String temp = new String(nextChars);
-                            if (bankSet.contains(temp) && !visited.contains(temp)) {
-                                visited.add(temp);
+                            if (bankSet.contains(temp)) {
                                 queue.add(temp);
+                                bankSet.remove(temp);
                             }
                         }
                         nextChars[j] = old;
