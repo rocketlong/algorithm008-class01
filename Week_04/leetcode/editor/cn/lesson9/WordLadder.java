@@ -50,48 +50,41 @@ public class WordLadder {
     public static void main(String[] args) {
         Solution solution = new WordLadder().new Solution();
         // TO TEST
-        System.out.println(solution.ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog")));
+        System.out.println(solution.ladderLength("hit", "cog", new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"))));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-            if (wordList == null || wordList.size() <= 0) {
+            if (wordList == null || wordList.size() <= 0 || !wordList.contains(endWord)) {
                 return 0;
             }
-            Set<Character> characterSet = new HashSet<>();
-            for (String s : wordList) {
-                for (int i = 0; i < s.toCharArray().length; i++) {
-                    characterSet.add(s.toCharArray()[i]);
-                }
-            }
             Queue<String> queue = new LinkedList<>();
-            Set<String> visited = new HashSet<>();
             queue.add(beginWord);
-            visited.add(beginWord);
-            int level = 0;
+            wordList.remove(beginWord);
+            int level = 1;
             while (!queue.isEmpty()) {
                 int size = queue.size();
                 for (int i = 0; i < size; i++) {
                     String next = queue.poll();
-                    if (next.equals(endWord)) {
+                    if (endWord.equals(next)) {
                         return level;
                     }
                     char[] chars = next.toCharArray();
                     for (int j = 0; j < chars.length; j++) {
                         char old = chars[j];
-                        for (Character character : characterSet) {
-                            chars[j] = character;
+                        for (char c = 'a'; c <= 'z'; c++) {
+                            chars[j] = c;
                             String temp = new String(chars);
-                            if (wordList.contains(temp) && !visited.contains(temp)) {
+                            if (wordList.contains(temp)) {
                                 queue.add(temp);
-                                visited.add(temp);
+                                wordList.remove(temp);
                             }
                         }
                         chars[j] = old;
                     }
-                    level++;
                 }
+                level++;
             }
             return 0;
         }
