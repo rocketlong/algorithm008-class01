@@ -43,7 +43,7 @@ public class ContainerWithMostWater {
         public int maxArea(int[] height) {
             // 2 双指针
             int max = 0;
-            for (int i = 0, j = height.length - 1 ; i < j;) {
+            for (int i = 0, j = height.length - 1; i < j; ) {
                 int h = height[i] < height[j] ? height[i++] : height[j--];
                 max = Math.max(max, h * (j - i + 1));
             }
