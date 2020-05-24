@@ -19,7 +19,7 @@
 // 
 // Related Topics 数学 二分查找
 
-package leetcode.editor.cn.lesson10;
+package leetcode.editor.cn.lesson11;
 
 //Java：x 的平方根
 public class Sqrtx {

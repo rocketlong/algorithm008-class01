@@ -17,7 +17,7 @@
 //输出: 0 
 // Related Topics 数组 二分查找
 
-package leetcode.editor.cn.lesson10;
+package leetcode.editor.cn.lesson11;
 
 //Java：寻找旋转排序数组中的最小值
 public class FindMinimumInRotatedSortedArray {

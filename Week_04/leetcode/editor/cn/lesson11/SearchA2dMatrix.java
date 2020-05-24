@@ -29,7 +29,7 @@
 //输出: false 
 // Related Topics 数组 二分查找
 
-package leetcode.editor.cn.lesson10;
+package leetcode.editor.cn.lesson11;
 
 //Java：搜索二维矩阵
 public class SearchA2dMatrix {
