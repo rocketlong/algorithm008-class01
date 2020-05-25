@@ -19,6 +19,7 @@
 package leetcode.editor.cn.lesson12;
 
 import java.util.Arrays;
+import java.util.OptionalInt;
 
 //Java：最长上升子序列
 public class LongestIncreasingSubsequence {
@@ -27,7 +28,7 @@ public class LongestIncreasingSubsequence {
         // TO TEST
 //        int[] nums = {10,9,2,5,3,7,101,18};
         int[] nums = {1,3,6,7,9,4,10,5,6};
-        solution.lengthOfLIS(nums);
+        System.out.println(solution.lengthOfLIS(nums));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -44,11 +45,7 @@ public class LongestIncreasingSubsequence {
                     }
                 }
             }
-            int max = Integer.MIN_VALUE;
-            for (int i = 0; i < nums.length; i++) {
-                max = Math.max(max, dp[i]);
-            }
-            return max;
+            return Arrays.stream(dp).max().getAsInt();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
