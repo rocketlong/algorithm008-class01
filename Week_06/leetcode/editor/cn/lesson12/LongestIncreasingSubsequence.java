@@ -26,26 +26,55 @@ public class LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestIncreasingSubsequence().new Solution();
         // TO TEST
-//        int[] nums = {10,9,2,5,3,7,101,18};
-        int[] nums = {1,3,6,7,9,4,10,5,6};
+        int[] nums = {10,9,2,5,3,7,101,18,3};
+//        int[] nums = {1,3,6,7,9,4,10,5,6};
         System.out.println(solution.lengthOfLIS(nums));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+//        public int lengthOfLIS(int[] nums) {
+//            // dp1:时间复杂度 O(N²) 这个动态规划需要考虑之前所有小于nums[i]的情况
+//            if (nums.length < 2) return nums.length;
+//            int[] dp = new int[nums.length];
+//            Arrays.fill(dp, 1);
+//            for (int i = 1; i < nums.length; i++) {
+//                for (int j = 0; j < i; j++) {
+//                    if (nums[i] > nums[j]) {
+//                        dp[i] = Math.max(dp[i], dp[j] + 1);
+//                    }
+//                }
+//            }
+//            return Arrays.stream(dp).max().getAsInt();
+//        }
+
         public int lengthOfLIS(int[] nums) {
-            // 时间复杂度 O(N²) 这个动态规划需要考虑之前所有小于nums[i]的情况
+            // dp2:时间复杂度O(N logN)
             if (nums.length < 2) return nums.length;
-            int[] dp = new int[nums.length];
-            Arrays.fill(dp, 1);
+            int[] tail = new int[nums.length];
+            tail[0] = nums[0];
+            int end = 0;
             for (int i = 1; i < nums.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (nums[i] > nums[j]) {
-                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                if (nums[i] > tail[end]) {
+                    tail[++end] = nums[i];
+                } else {
+                    int left = 0;
+                    int right = end;
+                    while (left <= right) {
+                        int mid = left + (right - left) / 2;
+                        if (tail[mid] > nums[i]) {
+                            right = mid - 1;
+                        } else if (tail[mid] < nums[i]) {
+                            left = mid + 1;
+                        } else {
+                            left = mid;
+                            break;
+                        }
                     }
+                    tail[left] = nums[i];
                 }
             }
-            return Arrays.stream(dp).max().getAsInt();
+            return ++end;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
