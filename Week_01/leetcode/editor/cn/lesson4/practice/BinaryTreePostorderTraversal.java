@@ -19,6 +19,7 @@ package leetcode.editor.cn.lesson4.practice;
 import leetcode.editor.cn.lesson7.InvertBinaryTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -41,6 +42,7 @@ public class BinaryTreePostorderTraversal {
      */
     class Solution {
         public List<Integer> postorderTraversal(TreeNode root) {
+            // 法一: 容易记忆
             List<Integer> ans = new ArrayList<>();
             if (root == null) return ans;
             Stack<TreeNode> stack = new Stack<>();
@@ -58,6 +60,21 @@ public class BinaryTreePostorderTraversal {
             }
             return ans;
         }
+
+//        public List<Integer> postorderTraversal(TreeNode root) {
+//            // 法二: 速度与法一差不多，运用了LinkedList
+//            LinkedList<Integer> ans = new LinkedList<>();
+//            if (root == null) return ans;
+//            Stack<TreeNode> stack = new Stack<>();
+//            stack.push(root);
+//            while (!stack.isEmpty()) {
+//                TreeNode node = stack.pop();
+//                ans.addFirst(node.val);
+//                if (node.left != null) stack.push(node.left);
+//                if (node.right != null) stack.push(node.right);
+//            }
+//            return ans;
+//        }
     }
 
     class TreeNode {
