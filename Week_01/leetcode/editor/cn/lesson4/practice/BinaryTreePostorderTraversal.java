@@ -16,8 +16,6 @@
 
 package leetcode.editor.cn.lesson4.practice;
 
-import leetcode.editor.cn.lesson7.InvertBinaryTree;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
