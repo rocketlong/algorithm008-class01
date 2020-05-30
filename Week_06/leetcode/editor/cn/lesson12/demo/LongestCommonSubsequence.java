@@ -40,7 +40,7 @@
 // 
 // Related Topics 动态规划
 
-package leetcode.editor.cn.lesson12;
+package leetcode.editor.cn.lesson12.demo;
 
 //Java：最长公共子序列
 public class LongestCommonSubsequence {

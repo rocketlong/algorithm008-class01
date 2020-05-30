@@ -38,7 +38,7 @@
 // 
 // Related Topics 数组
 
-package leetcode.editor.cn.lesson12;
+package leetcode.editor.cn.lesson12.demo;
 
 //Java：斐波那契数
 public class FibonacciNumber {

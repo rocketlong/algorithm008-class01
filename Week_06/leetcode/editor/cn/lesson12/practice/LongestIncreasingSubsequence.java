@@ -16,10 +16,7 @@
 // 进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 
 // Related Topics 二分查找 动态规划
 
-package leetcode.editor.cn.lesson12;
-
-import java.util.Arrays;
-import java.util.OptionalInt;
+package leetcode.editor.cn.lesson12.practice;
 
 //Java：最长上升子序列
 public class LongestIncreasingSubsequence {
