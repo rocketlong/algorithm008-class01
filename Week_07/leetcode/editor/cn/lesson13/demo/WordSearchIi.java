@@ -40,8 +40,8 @@ public class WordSearchIi {
     public static void main(String[] args) {
         Solution solution = new WordSearchIi().new Solution();
         // TO TEST
-        String[] words = {"oath","pea","eat","rain"};
-        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
+        String[] words = {"oath", "pea", "eat", "rain"};
+        char[][] board = {{'o', 'a', 'a', 'n'}, {'e', 't', 'a', 'e'}, {'i', 'h', 'k', 'r'}, {'i', 'f', 'l', 'v'}};
         System.out.println(solution.findWords(board, words));
     }
 
