@@ -51,43 +51,87 @@ public class WordLadder {
         Solution solution = new WordLadder().new Solution();
         // TO TEST
         System.out.println(solution.ladderLength("hit", "cog", new ArrayList<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"))));
+
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        // 单项bfs
+//        public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+//            if (wordList == null || wordList.size() == 0 || !wordList.contains(endWord)) return 0;
+//            Set<String> wordSet = new HashSet<>(wordList);
+//            Queue<String> queue = new LinkedList<>();
+//            queue.add(beginWord);
+//            wordSet.remove(beginWord);
+//            int level = 1;
+//            while (!queue.isEmpty()) {
+//                int size = queue.size();
+//                for (int i = 0; i < size; i++) {
+//                    String next = queue.poll();
+//                    if (endWord.equals(next)) {
+//                        return level;
+//                    }
+//                    char[] chars = next.toCharArray();
+//                    for (int j = 0; j < chars.length; j++) {
+//                        char old = chars[j];
+//                        for (char c = 'a'; c <= 'z'; c++) {
+//                            chars[j] = c;
+//                            String temp = new String(chars);
+//                            if (wordSet.contains(temp)) {
+//                                queue.add(temp);
+//                                wordSet.remove(temp);
+//                            }
+//                        }
+//                        chars[j] = old;
+//                    }
+//                }
+//                level++;
+//            }
+//            return 0;
+//        }
+
+        // 双向bfs
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-            if (wordList == null || wordList.size() <= 0 || !wordList.contains(endWord)) {
-                return 0;
-            }
-            Queue<String> queue = new LinkedList<>();
-            queue.add(beginWord);
-            wordList.remove(beginWord);
-            int level = 1;
-            while (!queue.isEmpty()) {
-                int size = queue.size();
-                for (int i = 0; i < size; i++) {
-                    String next = queue.poll();
-                    if (endWord.equals(next)) {
-                        return level;
-                    }
-                    char[] chars = next.toCharArray();
-                    for (int j = 0; j < chars.length; j++) {
-                        char old = chars[j];
+            if (wordList == null || wordList.size() == 0 ||!wordList.contains(endWord)) return 0;
+            Set<String> wordSet = new HashSet<>(wordList);
+            Set<String> beginSet = new HashSet<>();
+            Set<String> endSet = new HashSet<>();
+            beginSet.add(beginWord);
+            endSet.add(endWord);
+            int len = 1;
+            Set<String> visited = new HashSet<>();
+            while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+                if (beginSet.size() > endSet.size()) {
+                    Set<String> temp = beginSet;
+                    beginSet = endSet;
+                    endSet = temp;
+                }
+                Set<String> temp = new HashSet<>();
+                for (String word : beginSet) {
+                    char[] ch = word.toCharArray();
+                    for (int i = 0; i < ch.length; i++) {
                         for (char c = 'a'; c <= 'z'; c++) {
-                            chars[j] = c;
-                            String temp = new String(chars);
-                            if (wordList.contains(temp)) {
-                                queue.add(temp);
-                                wordList.remove(temp);
+                            char old = ch[i];
+                            ch[i] = c;
+                            String target = String.valueOf(ch);
+                            if (endSet.contains(target)) {
+                                return len + 1;
                             }
+                            if (!visited.contains(target) && wordSet.contains(target)) {
+                                visited.add(target);
+                                temp.add(target);
+                            }
+                            ch[i] = old;
                         }
-                        chars[j] = old;
                     }
                 }
-                level++;
+                beginSet = temp;
+                len++;
             }
             return 0;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
