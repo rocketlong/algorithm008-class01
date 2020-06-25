@@ -111,7 +111,7 @@ public class MinimumGeneticMutation {
             while (!startSet.isEmpty() && !endSet.isEmpty()) {
                 if (startSet.size() > endSet.size()) {
                     Set<String> set = startSet;
-                    startSet =  endSet;
+                    startSet = endSet;
                     endSet = set;
                 }
                 Set<String> temp = new HashSet<>();
