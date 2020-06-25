@@ -62,38 +62,83 @@ public class MinimumGeneticMutation {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        // 单向BFS
+//        public int minMutation(String start, String end, String[] bank) {
+//            if (start.equals(end) || bank.length == 0)
+//                return -1;
+//            Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
+//            bankSet.add(start);
+//            Queue<String> queue = new LinkedList<>();
+//            queue.add(start);
+//            bankSet.remove(start);
+//            int level = 0;
+//            while (!queue.isEmpty()) {
+//                int size = queue.size();
+//                for (int i = 0; i < size; i++) {
+//                    String next = queue.poll();
+//                    if (next.equals(end)) return level;
+//                    char[] nextChars = next.toCharArray();
+//                    for (int j = 0; j < 8; j++) {
+//                        char old = nextChars[j];
+//                        for (char c : new char[]{'A', 'C', 'G', 'T'}) {
+//                            nextChars[j] = c;
+//                            String temp = new String(nextChars);
+//                            if (bankSet.contains(temp)) {
+//                                queue.add(temp);
+//                                bankSet.remove(temp);
+//                            }
+//                        }
+//                        nextChars[j] = old;
+//                    }
+//                }
+//                level++;
+//            }
+//            return -1;
+//        }
+
+        // 双向BFS
         public int minMutation(String start, String end, String[] bank) {
-            if (start.equals(end) || bank.length == 0)
-                return -1;
+            if (start.equals(end) || bank.length == 0) return -1;
             Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
-            bankSet.add(start);
-            Queue<String> queue = new LinkedList<>();
-            queue.add(start);
-            bankSet.remove(start);
-            int level = 0;
-            while (!queue.isEmpty()) {
-                int size = queue.size();
-                for (int i = 0; i < size; i++) {
-                    String next = queue.poll();
-                    if (next.equals(end)) return level;
-                    char[] nextChars = next.toCharArray();
-                    for (int j = 0; j < 8; j++) {
-                        char old = nextChars[j];
+            if (!bankSet.contains(end)) return -1;
+            Set<String> startSet = new HashSet<>();
+            Set<String> endSet = new HashSet<>();
+            startSet.add(start);
+            endSet.add(end);
+            Set<String> visited = new HashSet<>();
+            int len = 0;
+            while (!startSet.isEmpty() && !endSet.isEmpty()) {
+                if (startSet.size() > endSet.size()) {
+                    Set<String> set = startSet;
+                    startSet =  endSet;
+                    endSet = set;
+                }
+                Set<String> temp = new HashSet<>();
+                for (String word : startSet) {
+                    char[] ch = word.toCharArray();
+                    for (int i = 0; i < ch.length; i++) {
+                        char old = ch[i];
                         for (char c : new char[]{'A', 'C', 'G', 'T'}) {
-                            nextChars[j] = c;
-                            String temp = new String(nextChars);
-                            if (bankSet.contains(temp)) {
-                                queue.add(temp);
-                                bankSet.remove(temp);
+                            ch[i] = c;
+                            String target = new String(ch);
+                            if (endSet.contains(target)) {
+                                return len + 1;
                             }
+                            if (!visited.contains(target) && bankSet.contains(target)) {
+                                temp.add(target);
+                                visited.add(target);
+                            }
+                            ch[i] = old;
                         }
-                        nextChars[j] = old;
                     }
                 }
-                level++;
+                startSet = temp;
+                len++;
             }
             return -1;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
