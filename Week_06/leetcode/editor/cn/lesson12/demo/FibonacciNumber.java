@@ -67,14 +67,27 @@ public class FibonacciNumber {
 //        }
 
         // 自底向上（dp）
+//        public int fib(int N) {
+//            int[] memo = new int[N + 2];
+//            memo[0] = 0;
+//            memo[1] = 1;
+//            for (int i = 2; i <= N; i++) {
+//                memo[i] = memo[i- 1] + memo[i - 2];
+//            }
+//            return memo[N];
+//        }
+
+        // 高级解法
         public int fib(int N) {
-            int[] memo = new int[N + 2];
-            memo[0] = 0;
-            memo[1] = 1;
+            if (N == 0 || N == 1) return N;
+            int prev = 0;
+            int curr = 1;
             for (int i = 2; i <= N; i++) {
-                memo[i] = memo[i- 1] + memo[i - 2];
+                int temp = curr;
+                curr = curr + prev;
+                prev = temp;
             }
-            return memo[N];
+            return curr;
         }
 
     }
