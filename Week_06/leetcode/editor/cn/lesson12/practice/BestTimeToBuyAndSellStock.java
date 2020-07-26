@@ -33,16 +33,67 @@ public class BestTimeToBuyAndSellStock {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        // 方法一：dp（不是套路）
+//        public int maxProfit(int[] prices) {
+//            if (prices == null || prices.length == 0 || prices.length == 1) return 0;
+//            int[] dp = new int[prices.length];
+//            int minPrince = prices[0];
+//            for (int i = 1; i < prices.length; i++) {
+//                dp[i] = Math.max(dp[i - 1], prices[i] - minPrince);
+//                minPrince = Math.min(minPrince, prices[i]);
+//            }
+//            return dp[prices.length - 1];
+//        }
+
+        // 方法二：dp（套路dp）
         public int maxProfit(int[] prices) {
-            if (prices == null || prices.length == 0 || prices.length == 1) return 0;
-            int[] dp = new int[prices.length];
-            int minPrince = prices[0];
-            for (int i = 1; i < prices.length; i++) {
-                dp[i] = Math.max(dp[i - 1], prices[i] - minPrince);
-                minPrince = Math.min(minPrince, prices[i]);
+            if (prices == null || prices.length == 0) return 0;
+            int m = prices.length;
+            int[][] dp = new int[m][2];
+            for (int i = 0; i < m; i++) {
+                /**
+                 * dp[-1][0] = 0; // 没开始，没有持有股票，收益是0
+                 * dp[-1][1] = Integer.MIN_VALUE; // 没开始，持有股票，不可能，收益负无穷
+                 */
+                if (i - 1 == -1) {
+                    // dp[0][0] = Math.max(dp[-1][0], dp[-1][1] + prices[i]);
+                    dp[i][0] = 0;
+                    // dp[0][1] = Math.max(dp[-1][1], dp[-1][0] - prices[i]);
+                    dp[i][1] = -prices[i];
+                    continue;
+                }
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                /**
+                 * 为什么不是 (dp[i - 1][0] - prices[i]) 而是 -prices[i]
+                 *
+                 * 动态转移方程：i-天数 k-买入次数 0-没有持有股票 1-持有股票
+                 * dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+                 * dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+                 *
+                 * k = 1 则 dp[i-1][k-1][0] = 0
+                 * 化简后的动态转移方程：
+                 * dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+                 * dp[i][1] = max(dp[i-1][1], -prices[i])
+                 */
+                dp[i][1] = Math.max(dp[i - 1][1],  -prices[i]);
             }
-            return dp[prices.length - 1];
+            return dp[m - 1][0];
         }
+
+        // 方法三：对方法二的优化 空间复杂度变为O(1)
+//        public int maxProfit(int[] prices) {
+//            if (prices == null || prices.length == 0) return 0;
+//            int n = prices.length;
+//            int dp_i_0 = 0;
+//            int dp_i_1 = Integer.MIN_VALUE;
+//            for (int i = 0; i < n; i++) {
+//                dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+//                dp_i_1 = Math.max(dp_i_1,  -prices[i]);
+//            }
+//            return dp_i_0;
+//        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
