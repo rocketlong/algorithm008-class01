@@ -44,19 +44,32 @@ public class InvertBinaryTree {
      * }
      */
     class Solution {
-        public TreeNode invertTree(TreeNode root) {
-            return _reverse(root);
-        }
 
-        private TreeNode _reverse(TreeNode root) {
-            if (root == null || (root.left == null && root.right == null)) return root;
-            TreeNode temp = root.left;
-            root.left = root.right;
-            root.right = temp;
-            root.left = _reverse(root.left);
-            root.right = _reverse(root.right);
+        // 方法一
+//        public TreeNode invertTree(TreeNode root) {
+//            return _reverse(root);
+//        }
+//
+//        private TreeNode _reverse(TreeNode root) {
+//            if (root == null || (root.left == null && root.right == null)) return root;
+//            TreeNode temp = root.left;
+//            root.left = root.right;
+//            root.right = temp;
+//            root.left = _reverse(root.left);
+//            root.right = _reverse(root.right);
+//            return root;
+//        }
+
+        // 方法二
+        public TreeNode invertTree(TreeNode root) {
+            if (root == null) return null;
+            TreeNode left = invertTree(root.left);
+            TreeNode right = invertTree(root.right);
+            root.left = right;
+            root.right = left;
             return root;
         }
+
     }
 
     class TreeNode {
