@@ -32,8 +32,8 @@ public class CoinChange {
     public static void main(String[] args) {
         Solution solution = new CoinChange().new Solution();
         // TO TEST
-        int[] coins = {1, 2, 5};
-        System.out.println(solution.coinChange(coins, 100));
+        int[] coins = {2};
+        System.out.println(solution.coinChange(coins, 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
