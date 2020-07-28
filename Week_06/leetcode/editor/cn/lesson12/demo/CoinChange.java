@@ -50,18 +50,19 @@ public class CoinChange {
 //            return dfs(coins, amount, new int[amount]);
 //        }
 //
-//        private int dfs(int[] coins, int rem, int[] count) {
-//            if (rem < 0) return -1;
-//            if (rem == 0) return 0;
-//            if (count[rem - 1] != 0) return count[rem - 1];
-//            int min = Integer.MAX_VALUE;
+//        private int dfs(int[] coins, int amount, int[] mem) {
+//            if (amount < 0) return -1;
+//            if (amount == 0) return 0;
+//            if (mem[amount - 1] != 0) return mem[amount - 1];
+//            int minValue = Integer.MAX_VALUE;
 //            for (int coin : coins) {
-//                int res = dfs(coins, rem - coin, count);
-//                if (res >= 0 && res < min)
-//                    min = res + 1;
+//                int res = dfs(coins, amount - coin, mem);
+//                if (res >= 0) {
+//                    minValue = Math.min(minValue, res);
+//                }
 //            }
-//            count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
-//            return count[rem - 1];
+//            mem[amount - 1] = (minValue == Integer.MAX_VALUE) ? -1 : minValue + 1;
+//            return mem[amount - 1];
 //        }
 
         // dp
