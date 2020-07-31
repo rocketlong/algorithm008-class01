@@ -41,24 +41,84 @@ public class BestTimeToBuyAndSellStockIii {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int maxProfit(int[] prices) {
-            if (prices == null || prices.length == 0) return 0;
-            int[][][] dp = new int[prices.length][3][2];
-            dp[0][0][0] = 0;
-            dp[0][1][0] = Integer.MIN_VALUE;
-            dp[0][2][0] = Integer.MIN_VALUE;
-            dp[0][0][1] = -prices[0];
-            dp[0][1][1] = Integer.MIN_VALUE;
-            dp[0][2][1] = Integer.MIN_VALUE;
-            for (int i = 1; i < prices.length; i++) {
-                dp[i][0][0] = dp[i - 1][0][0];
-                dp[i][0][1] = Math.max(dp[i - 1][0][1], dp[i - 1][0][0] - prices[i]);
-                dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][0][1] + prices[i]);
-                dp[i][1][1] = Math.max(dp[i - 1][1][1], dp[i - 1][1][0] == Integer.MIN_VALUE ? Integer.MIN_VALUE : dp[i - 1][1][0] - prices[i]);
-                dp[i][2][0] = Math.max(dp[i - 1][2][0], dp[i - 1][1][1] + prices[i]);
+//        public int maxProfit(int[] prices) {
+//            if (prices == null || prices.length == 0) return 0;
+//            int[][][] dp = new int[prices.length][3][2];
+//            dp[0][0][0] = 0;
+//            dp[0][1][0] = Integer.MIN_VALUE;
+//            dp[0][2][0] = Integer.MIN_VALUE;
+//            dp[0][0][1] = -prices[0];
+//            dp[0][1][1] = Integer.MIN_VALUE;
+//            dp[0][2][1] = Integer.MIN_VALUE;
+//            for (int i = 1; i < prices.length; i++) {
+//                dp[i][0][0] = dp[i - 1][0][0];
+//                dp[i][0][1] = Math.max(dp[i - 1][0][1], dp[i - 1][0][0] - prices[i]);
+//                dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][0][1] + prices[i]);
+//                dp[i][1][1] = Math.max(dp[i - 1][1][1], dp[i - 1][1][0] == Integer.MIN_VALUE ? Integer.MIN_VALUE : dp[i - 1][1][0] - prices[i]);
+//                dp[i][2][0] = Math.max(dp[i - 1][2][0], dp[i - 1][1][1] + prices[i]);
+//            }
+//            return Math.max(Math.max(dp[prices.length - 1][0][0], dp[prices.length - 1][1][0]), dp[prices.length - 1][2][0]);
+//        }
+
+        /**
+         * 第j天购买了股票，第i天卖出，那么j=[0...i-1]
+         * 那么最高的利润为: prices[i] - prices[j] + dp[j - 1][k - 1] = prices[i] - (prices[j] - dp[j - 1][k - 1])
+         * @param prices
+         * @return
+         */
+//        public int maxProfit(int[] prices) {
+//            if (prices.length == 0) return 0;
+//            int n = prices.length;
+//            int[][] dp = new int[n][3];
+//            for (int k = 1; k <= 2; k++) {
+//                for (int i = 1; i < n; i++) {
+//                    int min = prices[0];
+//                    for (int j = 1; j <= i; j++) {
+//                        min = Math.min(min, prices[j] - dp[j - 1][k - 1]);
+//                    }
+//                    dp[i][k] = Math.max(dp[i - 1][k], prices[i] - min);
+//                }
+//            }
+//            return dp[n - 1][2];
+//        }
+
+        /**
+         * 优化
+         * @param prices
+         * @return
+         */
+//        public int maxProfit(int[] prices) {
+//            if (prices.length == 0) return 0;
+//            int n = prices.length;
+//            int[][] dp = new int[n][3];
+//            for (int k = 1; k <= 2; k++) {
+//                int min = prices[0];
+//                for (int i = 1; i < n; i++) {
+//                    min = Math.min(min, prices[i] - dp[i - 1][k - 1]);
+//                    dp[i][k] = Math.max(dp[i - 1][k], prices[i] - min);
+//                }
+//            }
+//            return dp[n - 1][2];
+//        }
+
+        /**
+         * 每天，我们都以尽可能低的价格购买股票，并以尽可能高的价格出售股票。
+         * 对于第二笔交易，我们将第一笔交易的利润整合到第二笔购买的成本中，然后第二笔出售的利润将成为两笔交易的总利润。
+         * @param prices
+         * @return
+         */
+        public int maxProfit(int[] prices)  {
+            int buy1 = Integer.MAX_VALUE, buy2 = Integer.MAX_VALUE;
+            int sell1 = 0, sell2 = 0;
+            for (int i = 0; i < prices.length; i++) {
+                buy1 = Math.min(buy1, prices[i]);
+                sell1 = Math.max(sell1, prices[i] - buy1);
+                buy2 = Math.min(buy2, prices[i] - sell1);
+                sell2 = Math.max(sell2, prices[i] - buy2);
             }
-            return Math.max(Math.max(dp[prices.length - 1][0][0], dp[prices.length - 1][1][0]), dp[prices.length - 1][2][0]);
+            return sell2;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
