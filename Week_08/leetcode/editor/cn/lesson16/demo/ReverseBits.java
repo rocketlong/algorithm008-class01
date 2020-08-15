@@ -45,14 +45,24 @@ public class ReverseBits {
     //leetcode submit region begin(Prohibit modification and deletion)
     public class Solution {
         // you need treat n as an unsigned value
+//        public int reverseBits(int n) {
+//            int res = 0;
+//            for (int i = 0; i < 32; i++) {
+//                res = (res << 1) + (n & 1);
+//                n >>= 1;
+//            }
+//            return res;
+//        }
+
         public int reverseBits(int n) {
             int res = 0;
-            for (int i = 0; i < 32; i++) {
-                res = (res << 1) + (n & 1);
+            for (int i = 0; i <= 31; i++) {
+                res += (n & 1) << (31 - i);
                 n >>= 1;
             }
             return res;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
