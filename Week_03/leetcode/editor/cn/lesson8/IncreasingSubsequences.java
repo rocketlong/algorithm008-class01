@@ -17,7 +17,7 @@
 // Related Topics 深度优先搜索 
 // 👍 177 👎 0
 
-package leetcode.editor.cn.lesson9;
+package leetcode.editor.cn.lesson8;
 
 import java.util.ArrayList;
 import java.util.List;
