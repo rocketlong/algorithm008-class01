@@ -26,14 +26,12 @@
 
 package leetcode.editor.cn.lesson18.demo;
 
-import java.util.Arrays;
-
 //Java：翻转对
 public class ReversePairs {
     public static void main(String[] args) {
         Solution solution = new ReversePairs().new Solution();
         // TO TEST
-        int[] arr = {2,4,3,5,1};
+        int[] arr = {2, 4, 3, 5, 1};
         System.out.println(solution.reversePairs(arr));
     }
 
@@ -52,7 +50,7 @@ public class ReversePairs {
             int[] temp = new int[right - left + 1];
             int i = left, t = left, k = 0;
             for (int j = mid + 1; j <= right; j++, k++) {
-                while (i <= mid && nums[i] <= 2 * (long)nums[j]) i++;
+                while (i <= mid && nums[i] <= 2 * (long) nums[j]) i++;
                 while (t <= mid && nums[t] < nums[j]) temp[k++] = nums[t++];
                 temp[k] = nums[j];
                 count += mid - i + 1;
