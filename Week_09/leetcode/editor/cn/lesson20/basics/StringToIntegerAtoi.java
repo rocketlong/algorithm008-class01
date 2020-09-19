@@ -60,7 +60,7 @@
 // Related Topics 数学 字符串 
 // 👍 824 👎 0
 
-package leetcode.editor.cn.lesson19.basics;
+package leetcode.editor.cn.lesson20.basics;
 
 //Java：字符串转换整数 (atoi)
 public class StringToIntegerAtoi {

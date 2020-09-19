@@ -23,7 +23,7 @@
 // Related Topics 哈希表 
 // 👍 561 👎 0
 
-package leetcode.editor.cn.lesson19.basics;
+package leetcode.editor.cn.lesson20.basics;
 
 //Java：宝石与石头
 public class JewelsAndStones {

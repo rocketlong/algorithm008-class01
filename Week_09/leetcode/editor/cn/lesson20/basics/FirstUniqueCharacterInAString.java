@@ -17,7 +17,7 @@
 // Related Topics 哈希表 字符串 
 // 👍 265 👎 0
 
-package leetcode.editor.cn.lesson19.basics;
+package leetcode.editor.cn.lesson20.basics;
 
 import java.util.HashMap;
 import java.util.Map;

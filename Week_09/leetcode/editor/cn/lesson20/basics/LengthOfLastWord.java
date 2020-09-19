@@ -14,7 +14,7 @@
 // Related Topics 字符串 
 // 👍 240 👎 0
 
-package leetcode.editor.cn.lesson19.basics;
+package leetcode.editor.cn.lesson20.basics;
 
 //Java：最后一个单词的长度
 public class LengthOfLastWord {

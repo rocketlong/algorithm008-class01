@@ -23,7 +23,7 @@
 // Related Topics 字符串 
 // 👍 131 👎 0
 
-package leetcode.editor.cn.lesson19.basics;
+package leetcode.editor.cn.lesson20.basics;
 
 //Java：转换成小写字母
 public class ToLowerCase {
