@@ -48,6 +48,7 @@ public class EditDistance {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // dp[i][j] word1.substring(0, i) 与 word2.substring(0, j) 之间的编辑距离
         public int minDistance(String word1, String word2) {
             int n = word1.length();
             int m = word2.length();
