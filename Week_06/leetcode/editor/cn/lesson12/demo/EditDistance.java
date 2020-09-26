@@ -34,7 +34,7 @@
 // Related Topics 字符串 动态规划 
 // 👍 993 👎 0
 
-package leetcode.editor.cn.lesson12.practice;
+package leetcode.editor.cn.lesson12.demo;
 
 //Java：编辑距离
 public class EditDistance {
@@ -48,7 +48,8 @@ public class EditDistance {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // dp[i][j] word1.substring(0, i) 与 word2.substring(0, j) 之间的编辑距离
+        // 1.BFS 或 双向BFS
+        // 2.动态规划，dp[i][j] word1.substring(0, i) 与 word2.substring(0, j) 之间的编辑距离
         public int minDistance(String word1, String word2) {
             int n = word1.length();
             int m = word2.length();

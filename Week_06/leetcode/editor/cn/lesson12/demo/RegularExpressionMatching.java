@@ -57,7 +57,7 @@
 //输出: false 
 // Related Topics 字符串 动态规划 回溯算法
 
-package leetcode.editor.cn.lesson12.practice;
+package leetcode.editor.cn.lesson12.demo;
 
 //Java：正则表达式匹配
 public class RegularExpressionMatching {
@@ -72,6 +72,10 @@ public class RegularExpressionMatching {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+        // 题解
+        // 1.详细讲解，由浅入深
+        // 2.递归+动态规划
+
         // 1.递归
 //        public boolean isMatch(String s, String p) {
 //            if (p.isEmpty()) return s.isEmpty();
@@ -84,7 +88,7 @@ public class RegularExpressionMatching {
 //            return isFirstMatch && isMatch(s.substring(1), p.substring(1));
 //        }
 
-        // 2.dp
+        // 2.dp[i][j]
         public boolean isMatch(String s, String p) {
             boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
             dp[0][0] = true;
@@ -103,7 +107,6 @@ public class RegularExpressionMatching {
             }
             return dp[s.length()][p.length()];
         }
-
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
